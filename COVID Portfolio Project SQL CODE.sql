@@ -1,5 +1,4 @@
 select * from PortfolioProject..CovidDeath
-where continent is not null
 order by 3,4
 
 --select * from PortfolioProject..CovidVaccination
@@ -13,7 +12,8 @@ where continent is not null
 order by 1,2
 
 -- Looking at total cases vs total deaths
--- Shows liklihood of dying if you contract covid in your country
+-- Shows liklihood of dying if you contract covid in your country which in this case is india
+  
 select location, date, total_cases, total_deaths, 
 (CONVERT(float, total_deaths)/CONVERT(float, total_cases)) * 100 as DeathPercentage
 from PortfolioProject..CovidDeath
@@ -23,6 +23,7 @@ order by 1,2
 
 -- Looking at total cases vs population
 -- Shows what percentage of popultaion has got covid where location is india
+  
 select location, date, population, total_cases, 
 (CONVERT(float, total_cases)/CONVERT(float, population)) * 100 as PercentOfPopulationInfected
 from PortfolioProject..CovidDeath
@@ -82,7 +83,7 @@ where dea.continent is not null and vac.new_vaccinations is not null
 order by 2,3
 
 
---
+  
 -- USE CTE
 
 With PopvsVac (continent, location, date, population, new_vaccination, RollingPeopleVaccinated)
@@ -149,3 +150,5 @@ where dea.continent is not null and vac.new_vaccinations is not null
 
 Select * 
 From  PercentPopulationVaccinated
+
+
